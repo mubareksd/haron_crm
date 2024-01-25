@@ -1,0 +1,4 @@
+MYSQL_HOST=172.52.0.3
+MYSQL_USER=haron_crm
+MYSQL_PWD=haron_crm
+MYSQL_DB=haron_crm

@@ -1,0 +1,58 @@
+version: '3.9'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: haron_crm_app
+    restart: always
+    volumes:
+      - .:/haron_crm
+    depends_on:
+      - mariadb
+    networks:
+      haron_crm:
+        ipv4_address: 172.52.0.2
+
+  mariadb:
+    image: mariadb
+    container_name: haron_crm_mariadb
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: haron_crm
+      MYSQL_USER: haron_crm
+      MYSQL_PASSWORD: haron_crm
+    volumes:
+        - mariadb:/var/lib/mysql
+    networks:
+        haron_crm:
+            ipv4_address: 172.52.0.3
+
+  phpmyadmin:
+    image: phpmyadmin
+    container_name: haron_crm_phpmyadmin
+    restart: always
+    environment:
+      PMA_HOST: mariadb
+      PMA_PORT: 3306
+      PMA_USER: haron_crm
+      PMA_PASSWORD: haron_crm
+    volumes:
+      - phpmyadmin:/sessions
+    depends_on:
+      - mariadb
+    networks:
+      haron_crm:
+        ipv4_address: 172.52.0.4
+
+networks:
+  haron_crm:
+    ipam:
+      config:
+        - subnet: 172.52.0.0/24
+
+volumes:
+  mariadb:
+  phpmyadmin:
