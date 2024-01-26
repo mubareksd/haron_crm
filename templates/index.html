@@ -57,3 +57,12 @@
 </table>
   </div>
 {% endblock %}
+
+{% block scripts %}
+<script>
+      var path = window.location.pathname;
+      $('ul.nav-pills a').filter(function () {
+        return this.pathname === path;
+      }).addClass('active');
+    </script>
+{% endblock %}
