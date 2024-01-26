@@ -26,6 +26,11 @@ services:
       MYSQL_PASSWORD: haron_crm
     volumes:
         - mariadb:/var/lib/mysql
+    healthcheck:
+      test: [ 'CMD', 'mysqladmin', 'ping', '-pharon_crm' ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
     networks:
         haron_crm:
             ipv4_address: 172.52.0.3

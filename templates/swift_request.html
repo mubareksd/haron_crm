@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>{% block title %}{{ page.title }}{% endblock %}</h1>
+  <form action="{{ form.action }}" method="{{ form.method }}">
+    <div class="row">
+      {% for field in form_fields %}
+        <div class="col-md-6">
+          <div class="mb-3">
+            {%  if field.type == 'selector' %}
+              <select
+                class="form-select"
+                id="{{ field.id }}"
+                name="{{ field.name }}"
+                aria-describedby="{{ field.id }}Help"
+                {% if field.required %}required{% endif %}
+              >
+                {% for option in field.options %}
+                  <option {% if field.value == option.value %}selected{% endif %} value="{{ option.value }}">{{ option.value }}</option>
+                {% endfor %}
+              </select>
+            {% endif %}
+          {%  if field.type != 'selector' %}
+            <label for="{{ field.id }}" class="form-label">{{ field.label }}</label>
+            <input
+              type="{{ field.type }}"
+              class="form-control"
+              id="{{ field.id }}"
+              name="{{ field.name }}"
+              aria-describedby="{{ field.id }}Help"
+              {% if field.value %}value="{{ field.value }}"{% endif %}
+              {% if field.required %}required{% endif %}
+            />
+          {% endif %}
+            <div id="{{ field.id }}Help" class="form-text">{{ field.help_text }}</div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+{% endblock %}
