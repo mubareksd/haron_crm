@@ -42,10 +42,10 @@
     git clone https://github.com/mubareksd/haron_crm.git
     ```
 
-2. Copy the `.env.example` file to `.env`
+2. Copy the `env_example` file to `.env`
 
     ```bash
-    cp .env.example .env
+    cp env_example .env
     ```
 
 3. Update the `.env` file with your application settings
