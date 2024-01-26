@@ -27,63 +27,72 @@ def swift_request(swift_request_id):
             'id': 'business_name',
             'name': 'business_name',
             'type': 'text',
-            'help_text': 'Enter the name of the business you are requesting a Swift account for.'
+            'help_text': 'Enter the name of the business you are requesting a Swift account for.',
+            'required': 'true'
         },
         {
             'label': 'Contact Name',
             'id': 'contact_name',
             'name': 'contact_name',
             'type': 'text',
-            'help_text': 'Enter the name of the person who will be the primary contact for this account.'
+            'help_text': 'Enter the name of the person who will be the primary contact for this account.',
+            'required': 'true'
         },
         {
             'label': 'Contact Email',
             'id': 'contact_email',
             'name': 'contact_email',
             'type': 'email',
-            'help_text': 'Enter the email address of the primary contact for this account.'
+            'help_text': 'Enter the email address of the primary contact for this account.',
+            'required': 'true'
         },
         {
             'label': 'Contact Phone',
             'id': 'contact_phone',
             'name': 'contact_phone',
             'type': 'tel',
-            'help_text': 'Enter the phone number of the primary contact for this account.'
+            'help_text': 'Enter the phone number of the primary contact for this account.',
+            'required': 'true'
         },
         {
             'label': 'Contact Address',
             'id': 'contact_address',
             'name': 'contact_address',
             'type': 'text',
-            'help_text': 'Enter the street address of the primary contact for this account.'
+            'help_text': 'Enter the street address of the primary contact for this account.',
+            'required': 'true'
         },
         {
             'label': 'Contact City',
             'id': 'contact_city',
             'name': 'contact_city',
             'type': 'text',
-            'help_text': 'Enter the city of the primary contact for this account.'
+            'help_text': 'Enter the city of the primary contact for this account.',
+            'required': 'true'
         },
         {
             'label': 'Contact State',
             'id': 'contact_state',
             'name': 'contact_state',
             'type': 'text',
-            'help_text': 'Enter the state / province of the primary contact for this account.'
+            'help_text': 'Enter the state / province of the primary contact for this account.',
+            'required': 'true'
         },
         {
             'label': 'Contact Zip',
             'id': 'contact_zip',
             'name': 'contact_zip',
             'type': 'text',
-            'help_text': 'Enter the zip code / Postal Code of the primary contact for this account.'
+            'help_text': 'Enter the zip code / Postal Code of the primary contact for this account.',
+            'required': 'true'
         },
         {
             'label': 'Contact Country',
             'id': 'contact_country',
             'name': 'contact_country',
             'type': 'text',
-            'help_text': 'Enter the country of the primary contact for this account.'
+            'help_text': 'Enter the country of the primary contact for this account.',
+            'required': 'true'
         },
         {
             'label': 'Status',
@@ -102,6 +111,7 @@ def swift_request(swift_request_id):
                 },
             ],
             'help_text': 'Select the status of this request.',
+            'required': 'true'
         },
     ]
     swift_request = storage.get('SwiftRequest', swift_request_id)

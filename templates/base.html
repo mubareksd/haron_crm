@@ -19,18 +19,33 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-  {% block styles %} {% endblock %}
+    {% block styles %}
+      <style>
+        /* Add any additional styles here */
+        body {
+          padding-top: 70px; /* Adjusted padding for better content spacing */
+        }
+        .nav-pills .nav-link {
+          color: #ffffff;
+        }
+        .nav-pills .nav-link:hover,
+        .nav-pills .nav-link.active {
+          color: #28a745;
+        }
+        /* Add more custom styles as needed */
+      </style>
+    {% endblock %}
   </head>
   <body>
-    <header class="d-flex justify-content-center py-3 bg-dark">
-        <ul class="nav nav-pills">
-          <li class="nav-item">
-            <a href="/" class="nav-link text-white" aria-current="page">Home</a>
-          </li>
-          <li class="nav-item"><a href="/admin" class="nav-link text-white">Admin</a></li>
-        </ul>
+    <header class="d-flex justify-content-center py-3 bg-dark fixed-top">
+      <ul class="nav nav-pills">
+        <li class="nav-item">
+          <a href="/" class="nav-link text-white" aria-current="page">Home</a>
+        </li>
+        <li class="nav-item"><a href="/admin" class="nav-link text-white">Admin</a></li>
+      </ul>
     </header>
-    <div class="container">{% block content %} {% endblock %}</div>
+    <div class="container mt-5">{% block content %} {% endblock %}</div>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
       integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
@@ -43,6 +58,6 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
-  {% block scripts %} {% endblock %}
+    {% block scripts %} {% endblock %}
   </body>
 </html>

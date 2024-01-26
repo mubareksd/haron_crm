@@ -1,68 +1,67 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>{% block title %} {{ page.title }} {% endblock %}</h1>
-  <!-- button to make swift request -->
-  <div class="row">
-    <div class="col-md-12">
-      <a href="/swift_request" class="btn btn-primary btn-sm float-right">Make Swift Request</a>
+  <div class="container mt-4">
+    <h1 class="mb-4">{% block title %} {{ page.title }} {% endblock %}</h1>
+
+    <!-- Swift Request Button -->
+    <div class="text-end">
+      <a href="/swift_request" class="btn btn-primary btn-sm">Make Swift Request</a>
     </div>
-  </div>
-  <div class="table-responsive">
-  <table class="table table-striped">
-  <caption>Swift Requests</caption>
-  <thead>
-    <tr>
-      <th scope="col">Business Name</th>
-      <th scope="col">Contact Name</th>
-      <th scope="col">Contact Email</th>
-      <th scope="col">Contact Phone</th>
-      <th scope="col">Status</th>
-      {% if actions %}<th scope="col"> Action </th>{% endif %}
-    </tr>
-  </thead>
-  <tbody>
-    {% if swift_requests.__len__() == 0 %}
-      <tr>
-        <td colspan="5" class="text-center">No Swift Requests</td>
-      </tr>
-    {% endif %}
-    {% for swift_request in swift_requests %}
-      <tr>
-            <td>{{ swift_request.business_name }}</td>
-            <td>{{ swift_request.contact_name }}</td>
-            <td>{{ swift_request.contact_email }}</td>
-            <td>{{ swift_request.contact_phone }}</td>
-            <td
-            {% if swift_request.status == 'Pending' %}
-                class="text-warning"
-            {% elif swift_request.status == 'Approved' %}
-                class="text-success"
-            {% elif swift_request.status == 'Denied' %}
-                class="text-danger"
-            {% endif %}
-            >{{ swift_request.status }}</td>
-            {% if actions %}
+
+    <!-- Table of Swift Requests -->
+    <div class="table-responsive mt-4">
+      <table class="table table-striped">
+        <caption>Swift Requests</caption>
+        <thead>
+          <tr>
+            <th scope="col">Business Name</th>
+            <th scope="col">Contact Name</th>
+            <th scope="col">Contact Email</th>
+            <th scope="col">Contact Phone</th>
+            <th scope="col">Status</th>
+            {% if actions %}<th scope="col">Action</th>{% endif %}
+          </tr>
+        </thead>
+        <tbody>
+          {% if swift_requests|length == 0 %}
+            <tr>
+              <td colspan="{% if actions %}6{% else %}5{% endif %}" class="text-center">No Swift Requests</td>
+            </tr>
+          {% endif %}
+          {% for swift_request in swift_requests %}
+            <tr>
+              <td>{{ swift_request.business_name }}</td>
+              <td>{{ swift_request.contact_name }}</td>
+              <td>{{ swift_request.contact_email }}</td>
+              <td>{{ swift_request.contact_phone }}</td>
+              <td class="{% if swift_request.status == 'Pending' %}text-warning{% elif swift_request.status == 'Approved' %}text-success{% elif swift_request.status == 'Denied' %}text-danger{% endif %}">
+                {{ swift_request.status }}
+              </td>
+              {% if actions %}
                 <td>
                   <div class="btn-group btn-group-sm">
                     {% for action in actions %}
-                      <a href="{{ action.url + swift_request.id }}" class="btn btn-link text-{{ action.color }}" title="{{ action.label }}"><i class="fa fa-{{ action.icon }}"></i></a>
+                      <a href="{{ action.url + swift_request.id }}" class="btn btn-link text-{{ action.color }}" title="{{ action.label }}">
+                        <i class="fa fa-{{ action.icon }}"></i>
+                      </a>
                     {% endfor %}
                   </div>
                 </td>
-            {% endif %}
-      </tr>
-      {% endfor %}
-  </tbody>
-</table>
+              {% endif %}
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
   </div>
 {% endblock %}
 
 {% block scripts %}
-<script>
-      var path = window.location.pathname;
-      $('ul.nav-pills a').filter(function () {
-        return this.pathname === path;
-      }).addClass('active');
-    </script>
+  <script>
+    var path = window.location.pathname;
+    $('ul.nav-pills a').filter(function () {
+      return this.pathname === path;
+    }).addClass('active');
+  </script>
 {% endblock %}
