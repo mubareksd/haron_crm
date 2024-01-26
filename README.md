@@ -66,7 +66,7 @@
 
 ### Accessing the application
 
-The application will be available at [http://172.52.0.2](http://172.52.0.2)
+The application will be available at [http://172.52.0.2](http://172.52.0.2) and [http://172.52.0.2/admin](http://172.52.0.2/admin)
 
 ### Accessing the database
 
